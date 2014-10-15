@@ -12,4 +12,12 @@
 
 @interface DRARssFeed : NSObject
 
+/**
+ * Creates a feed object with a feed at the feed URL.
+ */
+- (instancetype)initWithUrl:(NSURL *)feedUrl;
+
+/** URL of the feed. */
+@property(readonly, nonatomic) NSURL *feedUrl;
+
 @end

@@ -9,9 +9,18 @@
 #import "DRAFeedViewController.h"
 
 #import "DRAItemViewController.h"
+#import "DRARssFeed.h"
+
+/** The default RSS feed URL. */
+static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
 @interface DRAFeedViewController ()
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+/** The RSS feed. */
+@property(readonly, retain) DRARssFeed *feed;
+
 @end
 
 @implementation DRAFeedViewController
@@ -29,12 +38,15 @@
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
+
+    // create the RSS feed
+    _feed = [[DRARssFeed alloc] initWithUrl:[NSURL URLWithString:kDefaultRssFeedUrlString]];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // TODO: release RSS items?
 }
 
 - (void)insertNewObject:(id)sender
