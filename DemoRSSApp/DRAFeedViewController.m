@@ -46,6 +46,12 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
     _feed = [[DRARssFeed alloc] initWithUrl:[NSURL URLWithString:kDefaultRssFeedUrlString]];
     _feed.delegate = self;
 
+    // create refresh controller for "drag to reload"
+    self.refreshControl = [UIRefreshControl new];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshItems:)
+                  forControlEvents:UIControlEventValueChanged];
+
     // load RSS items from the feed
     [self reloadItems];
 }
@@ -58,8 +64,16 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
 #pragma mark - RSS Feed
 
+- (void)refreshItems:(UIRefreshControl *)refreshControl
+{
+    // TODO: deal with duplicates in DRARssFeed? Check guid.
+    [self reloadItems];
+}
+
 - (void)reloadItems
 {
+    [self.refreshControl beginRefreshing];
+
     [self.feed loadItems];
     // TODO: reload in delegate callback
 }
@@ -69,11 +83,15 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
     // take the loaded items and present them
     _items = [feed.items mutableCopy];
     [self.tableView reloadData];
+
+    [self.refreshControl endRefreshing];
 }
 
 - (void)rssFeedFailedToLoadItemsWithError:(NSError *)error
 {
-    // empty
+    // TODO: present error
+
+    [self.refreshControl endRefreshing];
 }
 
 #pragma mark - Table View
