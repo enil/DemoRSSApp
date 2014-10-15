@@ -36,12 +36,7 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-
+    
     // create the RSS feed
     _feed = [[DRARssFeed alloc] initWithUrl:[NSURL URLWithString:kDefaultRssFeedUrlString]];
     _feed.delegate = self;
@@ -125,8 +120,8 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
+        DRARssItem *item = [self.items objectAtIndex:indexPath.row];
+        [[segue destinationViewController] setItem:item];
     }
 }
 
