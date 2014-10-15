@@ -91,7 +91,7 @@ static NSDateFormatter *kItemTimeDateFormatter;
 - (void)rssFeedLoadedItems:(DRARssFeed *)feed
 {
     // take the loaded items and present them
-    _items = [feed.items mutableCopy];
+    _items = [feed.itemsSortedByPublicationDate mutableCopy];
     [self.tableView reloadData];
 
     [self.refreshControl endRefreshing];

@@ -30,7 +30,7 @@
 - (BOOL)isEqual:(id)object
 {
     // compare by GUID
-    return [object isSubclassOfClass:self.class] && [self.guid isEqual:((DRARssItem *)object).guid];
+    return [object isKindOfClass:self.class] && [self.guid isEqual:((DRARssItem *)object).guid];
 }
 
 - (NSUInteger)hash

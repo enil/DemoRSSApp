@@ -34,6 +34,9 @@ static NSDateFormatter *kItemDateFormatter;
 
     /** The value being updated for the current item. */
     NSMutableString *currentValue;
+
+    /** The items. */
+    NSMutableSet * items;
 }
 
 /**
@@ -75,7 +78,7 @@ static NSDateFormatter *kItemDateFormatter;
 {
     if (self = [super init]) {
         _feedUrl = feedUrl;
-        _items = [NSMutableArray array];
+        items = [NSMutableSet set];
     }
     return self;
 }
@@ -110,6 +113,18 @@ static NSDateFormatter *kItemDateFormatter;
     } else {
         // can not start loading until finished
         return NO;
+    }
+}
+
+- (NSArray *)itemsSortedByPublicationDate
+{
+    // TODO: cache result
+    if (items) {
+        NSSortDescriptor * descriptor = [[NSSortDescriptor alloc] initWithKey:@"publicationDate" ascending:NO];
+
+        return [items sortedArrayUsingDescriptors:@[descriptor]];
+    } else {
+        return [NSArray array];
     }
 }
 
@@ -174,7 +189,7 @@ static NSDateFormatter *kItemDateFormatter;
 - (void)parserDidEndDocument:(NSXMLParser *)parser
 {
     // add the new parsed items
-    [self.items addObjectsFromArray: newItems];
+    [items addObjectsFromArray: newItems];
     newItems = nil;
 
     // clean up

@@ -25,13 +25,15 @@
  */
 - (BOOL)loadItems;
 
+/**
+ * Gets the sorted items.
+ */
+- (NSArray *)itemsSortedByPublicationDate;
+
 /** URL of the feed. */
 @property(readonly, nonatomic) NSURL *feedUrl;
 
 /** The feed delegate. */
 @property(retain, nonatomic) NSObject<DRARssFeedDelegate> * delegate;
-
-/** The items. */
-@property(readonly, nonatomic) NSMutableArray * items;
 
 @end
