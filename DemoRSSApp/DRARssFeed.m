@@ -10,6 +10,9 @@
 
 #import "DRARssFeed.h"
 
+/** Attributes on parsed items to add to item objects. */
+static NSDictionary *kItemAttributes;
+
 @interface DRARssFeed() {
     /** If the parser is within the channel tag. */
     BOOL inChannel;
@@ -47,6 +50,11 @@
  */
 - (void)updateAttributeWithString:(NSString *)value;
 
+/**
+ * Converts a attribute to the appropriate type for its key.
+ */
+- (id)convertValueForAttribute:(NSString *)attributeKey withValue:(NSString *)value;
+
 @end
 
 @implementation DRARssFeed
@@ -67,6 +75,14 @@
         _items = [NSMutableArray array];
     }
     return self;
+}
+
++ (void)initialize
+{
+    // map tag names to attribute names for item objects
+    kItemAttributes = @{@"title":       @"title",
+                        @"description": @"description",
+                        @"link":        @"link"};
 }
 
 - (BOOL)loadItems
@@ -92,6 +108,9 @@
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
     attributes:(NSDictionary *)attributeDict
 {
+    // key for the item attribute
+    NSString *attributeKey = nil;
+
     // TODO: replace assertions with actual errors
     if ([elementName isEqualToString:@"channel"]) {
         NSAssert(!inChannel, @"Already in a channel");
@@ -103,8 +122,9 @@
 
         // start new item
         currentItem = [[DRARssItem alloc] init];
-    } else if (currentItem && [elementName isEqualToString:@"title"]) {
-        [self beginItemAttribute:@"title"];
+    } else if (currentItem && (attributeKey = [kItemAttributes objectForKey:elementName])) {
+        // start a new attribute
+        [self beginItemAttribute:attributeKey];
     } else {
         // handle error
     }
@@ -120,6 +140,9 @@
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {
+    // key for the item attribute
+    NSString *attributeKey = nil;
+
     if ([elementName isEqualToString:@"channel"]) {
         NSAssert(inChannel, @"Not in a channel");
 
@@ -131,8 +154,9 @@
         // add item to list of new items
         [newItems addObject:currentItem];
         currentItem = nil;
-    } else if (currentItem && [elementName isEqualToString:@"title"]) {
-        [self endItemAttribute:@"title"];
+    } else if (currentItem && (attributeKey = [kItemAttributes objectForKey:elementName])) {
+        // end the current attribute
+        [self endItemAttribute:attributeKey];
     } else {
         // handle error
     }
@@ -173,10 +197,20 @@
     NSAssert([attributeKey isEqualToString:currentKey], @"Wrong attribute");
 
     // set the value of the attribute
-    [currentItem setValue:currentValue forKey:currentKey];
+    [currentItem setValue:[self convertValueForAttribute:currentKey withValue:currentValue] forKey:currentKey];
 
     currentKey = nil;
     currentValue = nil;
+}
+
+- (id)convertValueForAttribute:(NSString *)attributeKey withValue:(NSString *)value
+{
+    if ([attributeKey isEqualToString:@"link"]) {
+        // link should be a URL
+        return [NSURL URLWithString:value];
+    } else {
+        return value;
+    }
 }
 
 - (void)updateAttributeWithString:(NSString *)value
