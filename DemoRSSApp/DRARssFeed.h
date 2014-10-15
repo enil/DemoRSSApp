@@ -10,19 +10,28 @@
 
 #import <Foundation/Foundation.h>
 #import "DRARssFeedDelegate.h"
+#import "DRARssItem.h"
 
 
-@interface DRARssFeed : NSObject
+@interface DRARssFeed : NSObject<NSXMLParserDelegate>
 
 /**
  * Creates a feed object with a feed at the feed URL.
  */
 - (instancetype)initWithUrl:(NSURL *)feedUrl;
 
+/**
+ * Loads new items.
+ */
+- (BOOL)loadItems;
+
 /** URL of the feed. */
 @property(readonly, nonatomic) NSURL *feedUrl;
 
 /** The feed delegate. */
-@property(retain, nonatomic) id<DRARssFeedDelegate> delegate;
+@property(retain, nonatomic) NSObject<DRARssFeedDelegate> * delegate;
+
+/** The items. */
+@property(readonly, nonatomic) NSMutableArray * items;
 
 @end

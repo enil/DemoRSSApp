@@ -16,13 +16,18 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
 @interface DRAFeedViewController ()
 
+/**
+ * Loads RSS items.
+ */
+- (void)reloadItems;
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 /** The RSS feed. */
 @property(readonly, retain) DRARssFeed *feed;
 
 /** The RSS feed items. */
-@property(readonly, retain) NSMutableArray *items;
+@property(readonly, retain) NSArray *items;
 
 @end
 
@@ -36,16 +41,13 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     // create the RSS feed
     _feed = [[DRARssFeed alloc] initWithUrl:[NSURL URLWithString:kDefaultRssFeedUrlString]];
     _feed.delegate = self;
 
-    // create mock items
-    _items = [NSMutableArray array];
-    [self.items addObject: [DRARssItem itemWithTitle:@"Item 1" andDescription:@"Description 1" andLink:[NSURL URLWithString:@"http://example.org/item1"]]];
-    [self.items addObject: [DRARssItem itemWithTitle:@"Item 2" andDescription:@"Description 2" andLink:[NSURL URLWithString:@"http://example.org/item2"]]];
-    [self.items addObject: [DRARssItem itemWithTitle:@"Item 3" andDescription:@"Description 3" andLink:[NSURL URLWithString:@"http://example.org/item3"]]];
+    // load RSS items from the feed
+    [self reloadItems];
 }
 
 - (void)didReceiveMemoryWarning
@@ -54,33 +56,19 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
     // TODO: release RSS items?
 }
 
-- (void)insertNewObject:(id)sender
-{
-    NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-    NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
-    NSManagedObject *newManagedObject = [NSEntityDescription insertNewObjectForEntityForName:[entity name] inManagedObjectContext:context];
-    
-    // If appropriate, configure the new managed object.
-    // Normally you should use accessor methods, but using KVC here avoids the need to add a custom class to the template.
-    [newManagedObject setValue:[NSDate date] forKey:@"timeStamp"];
-    
-    // Save the context.
-    NSError *error = nil;
-    if (![context save:&error]) {
-         // Replace this implementation with code to handle the error appropriately.
-         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. 
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
-    }
-
-    [self.tableView reloadData];
-}
-
 #pragma mark - RSS Feed
+
+- (void)reloadItems
+{
+    [self.feed loadItems];
+    // TODO: reload in delegate callback
+}
 
 - (void)rssFeedLoadedItems:(DRARssFeed *)feed
 {
-    // empty
+    // take the loaded items and present them
+    _items = [feed.items mutableCopy];
+    [self.tableView reloadData];
 }
 
 - (void)rssFeedFailedToLoadItemsWithError:(NSError *)error
@@ -97,7 +85,7 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.items.count;
+    return self.items ? self.items.count : 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
