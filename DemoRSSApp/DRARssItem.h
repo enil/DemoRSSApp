@@ -27,6 +27,9 @@
 /** The link URL. */
 @property(retain, nonatomic) NSURL *link;
 
+/** The unique identifier. */
+@property(copy, nonatomic) NSString *guid;
+
 /** Whether the item has been read. */
 @property(assign, nonatomic) BOOL isRead;
 

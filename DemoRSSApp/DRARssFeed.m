@@ -82,7 +82,8 @@ static NSDictionary *kItemAttributes;
     // map tag names to attribute names for item objects
     kItemAttributes = @{@"title":       @"title",
                         @"description": @"description",
-                        @"link":        @"link"};
+                        @"link":        @"link",
+                        @"guid":        @"guid"};
 }
 
 - (BOOL)loadItems

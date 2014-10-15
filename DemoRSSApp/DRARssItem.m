@@ -27,4 +27,16 @@
     return [[self alloc] initWithTitle:title andDescription:description andLink:link];
 }
 
+- (BOOL)isEqual:(id)object
+{
+    // compare by GUID
+    return [object isSubclassOfClass:self.class] && [self.guid isEqual:((DRARssItem *)object).guid];
+}
+
+- (NSUInteger)hash
+{
+    // hash by GUID
+    return [self.guid hash];
+}
+
 @end
