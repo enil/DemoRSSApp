@@ -14,6 +14,9 @@
 /** The default RSS feed URL. */
 static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
+/** The publication date formatter for items. */
+static NSDateFormatter *kItemTimeDateFormatter;
+
 @interface DRAFeedViewController ()
 
 /**
@@ -32,6 +35,13 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 @end
 
 @implementation DRAFeedViewController
+
++ (void)initialize
+{
+    // create the publication date formatter to only show hours and minutes
+    kItemTimeDateFormatter = [NSDateFormatter new];
+    kItemTimeDateFormatter.timeStyle = NSDateFormatterShortStyle;
+}
 
 - (void)awakeFromNib
 {
@@ -118,6 +128,7 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 {
     DRARssItem *item = [self.items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
+    cell.detailTextLabel.text = [kItemTimeDateFormatter stringFromDate:item.publicationDate];
     cell.accessoryType = item.isRead ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
 }
 

@@ -13,6 +13,9 @@
 /** Attributes on parsed items to add to item objects. */
 static NSDictionary *kItemAttributes;
 
+/** Formatter for item publication dates. */
+static NSDateFormatter *kItemDateFormatter;
+
 @interface DRARssFeed() {
     /** If the parser is within the channel tag. */
     BOOL inChannel;
@@ -83,7 +86,12 @@ static NSDictionary *kItemAttributes;
     kItemAttributes = @{@"title":       @"title",
                         @"description": @"description",
                         @"link":        @"link",
-                        @"guid":        @"guid"};
+                        @"guid":        @"guid",
+                        @"pubDate":     @"publicationDate"};
+
+    // create date formatter for publication dates
+    kItemDateFormatter = [[NSDateFormatter alloc] init];
+    kItemDateFormatter.dateFormat = @"EEE, dd MMM yyyy HH:mm:ss zzz";
 }
 
 - (BOOL)loadItems
@@ -209,6 +217,8 @@ static NSDictionary *kItemAttributes;
     if ([attributeKey isEqualToString:@"link"]) {
         // link should be a URL
         return [NSURL URLWithString:value];
+    } else if ([attributeKey isEqualToString:@"publicationDate"]) {
+        return [kItemDateFormatter dateFromString:value];
     } else {
         return value;
     }

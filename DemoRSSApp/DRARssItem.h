@@ -30,6 +30,9 @@
 /** The unique identifier. */
 @property(copy, nonatomic) NSString *guid;
 
+/** The publication date. */
+@property(retain, nonatomic) NSDate *publicationDate;
+
 /** Whether the item has been read. */
 @property(assign, nonatomic) BOOL isRead;
 
