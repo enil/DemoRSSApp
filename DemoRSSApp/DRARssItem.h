@@ -12,4 +12,19 @@
 
 @interface DRARssItem : NSObject
 
+/** Creates an item with the required properties. */
+- (instancetype)initWithTitle:(NSString *)title andDescription:(NSString *)description andLink:(NSURL *)link;
+
+/** Creates an item with the required properties. */
++ (instancetype)itemWithTitle:(NSString *)title andDescription:(NSString *)description andLink:(NSURL *)link;
+
+/** The title. */
+@property(copy, nonatomic) NSString *title;
+
+/** The description. */
+@property(copy, nonatomic) NSString *description;
+
+/** The link URL. */
+@property(retain, nonatomic) NSURL *link;
+
 @end
