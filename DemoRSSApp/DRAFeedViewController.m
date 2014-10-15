@@ -118,6 +118,7 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 {
     DRARssItem *item = [self.items objectAtIndex:indexPath.row];
     cell.textLabel.text = item.title;
+    cell.accessoryType = item.isRead ? UITableViewCellAccessoryNone : UITableViewCellAccessoryCheckmark;
 }
 
 #pragma mark - Storyboard
@@ -127,6 +128,12 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         DRARssItem *item = [self.items objectAtIndex:indexPath.row];
+
+        // TODO: persist item and read state (core data?)
+        // item is now marked as read
+        item.isRead = YES;
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:NO];
+
         [[segue destinationViewController] setItem:item];
     }
 }

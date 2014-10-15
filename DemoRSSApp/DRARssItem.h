@@ -27,4 +27,7 @@
 /** The link URL. */
 @property(retain, nonatomic) NSURL *link;
 
+/** Whether the item has been read. */
+@property(assign, nonatomic) BOOL isRead;
+
 @end
