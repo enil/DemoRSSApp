@@ -25,6 +25,8 @@
 		207DD66719EE6596008B5AB9 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DD64219EE6596008B5AB9 /* CoreData.framework */; };
 		207DD66F19EE6596008B5AB9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 207DD66D19EE6596008B5AB9 /* InfoPlist.strings */; };
 		207DD67119EE6596008B5AB9 /* DemoRSSAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD67019EE6596008B5AB9 /* DemoRSSAppTests.m */; };
+		207DD67E19EE68A4008B5AB9 /* DRARssFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD67D19EE68A4008B5AB9 /* DRARssFeed.m */; };
+		207DD68119EE68F2008B5AB9 /* DRARssItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD68019EE68F2008B5AB9 /* DRARssItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		207DD66C19EE6596008B5AB9 /* DemoRSSAppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoRSSAppTests-Info.plist"; sourceTree = "<group>"; };
 		207DD66E19EE6596008B5AB9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		207DD67019EE6596008B5AB9 /* DemoRSSAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DemoRSSAppTests.m; sourceTree = "<group>"; };
+		207DD67C19EE68A4008B5AB9 /* DRARssFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRARssFeed.h; sourceTree = "<group>"; };
+		207DD67D19EE68A4008B5AB9 /* DRARssFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRARssFeed.m; sourceTree = "<group>"; };
+		207DD67F19EE68F2008B5AB9 /* DRARssItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRARssItem.h; sourceTree = "<group>"; };
+		207DD68019EE68F2008B5AB9 /* DRARssItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRARssItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,11 +131,9 @@
 			children = (
 				207DD64D19EE6596008B5AB9 /* DRAAppDelegate.h */,
 				207DD64E19EE6596008B5AB9 /* DRAAppDelegate.m */,
+				207DD67A19EE6770008B5AB9 /* controllers */,
+				207DD67B19EE6787008B5AB9 /* model */,
 				207DD65019EE6596008B5AB9 /* Main.storyboard */,
-				207DD65619EE6596008B5AB9 /* DRAMasterViewController.h */,
-				207DD65719EE6596008B5AB9 /* DRAMasterViewController.m */,
-				207DD65919EE6596008B5AB9 /* DRADetailViewController.h */,
-				207DD65A19EE6596008B5AB9 /* DRADetailViewController.m */,
 				207DD65C19EE6596008B5AB9 /* Images.xcassets */,
 				207DD65319EE6596008B5AB9 /* DemoRSSApp.xcdatamodeld */,
 				207DD64519EE6596008B5AB9 /* Supporting Files */,
@@ -164,6 +168,28 @@
 				207DD66D19EE6596008B5AB9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		207DD67A19EE6770008B5AB9 /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+				207DD65619EE6596008B5AB9 /* DRAMasterViewController.h */,
+				207DD65719EE6596008B5AB9 /* DRAMasterViewController.m */,
+				207DD65919EE6596008B5AB9 /* DRADetailViewController.h */,
+				207DD65A19EE6596008B5AB9 /* DRADetailViewController.m */,
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
+		207DD67B19EE6787008B5AB9 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				207DD67C19EE68A4008B5AB9 /* DRARssFeed.h */,
+				207DD67D19EE68A4008B5AB9 /* DRARssFeed.m */,
+				207DD67F19EE68F2008B5AB9 /* DRARssItem.h */,
+				207DD68019EE68F2008B5AB9 /* DRARssItem.m */,
+			);
+			name = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +292,8 @@
 			files = (
 				207DD64F19EE6596008B5AB9 /* DRAAppDelegate.m in Sources */,
 				207DD65B19EE6596008B5AB9 /* DRADetailViewController.m in Sources */,
+				207DD68119EE68F2008B5AB9 /* DRARssItem.m in Sources */,
+				207DD67E19EE68A4008B5AB9 /* DRARssFeed.m in Sources */,
 				207DD64B19EE6596008B5AB9 /* main.m in Sources */,
 				207DD65819EE6596008B5AB9 /* DRAMasterViewController.m in Sources */,
 				207DD65519EE6596008B5AB9 /* DemoRSSApp.xcdatamodeld in Sources */,
