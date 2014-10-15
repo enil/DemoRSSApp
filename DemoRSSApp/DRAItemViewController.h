@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) DRARssItem *item;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *publicationDateTitle;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
 
 @end

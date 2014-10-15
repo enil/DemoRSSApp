@@ -8,11 +8,22 @@
 
 #import "DRAItemViewController.h"
 
+/** The publication date formatter for items. */
+static NSDateFormatter *kItemTimeDateFormatter;
+
 @interface DRAItemViewController ()
 - (void)configureView;
 @end
 
 @implementation DRAItemViewController
+
++ (void)initialize
+{
+    // create the publication date formatter to only show time and date
+    kItemTimeDateFormatter = [NSDateFormatter new];
+    kItemTimeDateFormatter.timeStyle = NSDateFormatterMediumStyle;
+    kItemTimeDateFormatter.dateStyle = NSDateFormatterShortStyle;
+}
 
 #pragma mark - Managing the detail item
 
@@ -33,6 +44,7 @@
     if (self.item) {
         self.titleLabel.text = self.item.title;
         self.descriptionTextView.text = self.item.description;
+        self.publicationDateTitle.text = [NSString stringWithFormat:@"Published at %@", [kItemTimeDateFormatter stringFromDate:self.item.publicationDate]];
     }
 }
 
