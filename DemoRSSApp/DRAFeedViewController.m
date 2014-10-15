@@ -9,7 +9,6 @@
 #import "DRAFeedViewController.h"
 
 #import "DRAItemViewController.h"
-#import "DRARssFeed.h"
 
 /** The default RSS feed URL. */
 static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
@@ -41,6 +40,7 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
 
     // create the RSS feed
     _feed = [[DRARssFeed alloc] initWithUrl:[NSURL URLWithString:kDefaultRssFeedUrlString]];
+    _feed.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,6 +67,18 @@ static NSString * kDefaultRssFeedUrlString = @"http://www.dn.se/nyheter/m/rss/";
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
+}
+
+#pragma mark - RSS Feed
+
+- (void)rssFeedLoadedItems:(DRARssFeed *)feed
+{
+    // empty
+}
+
+- (void)rssFeedFailedToLoadItemsWithError:(NSError *)error
+{
+    // empty
 }
 
 #pragma mark - Table View

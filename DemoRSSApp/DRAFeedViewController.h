@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import <CoreData/CoreData.h>
+#import "DRARssFeed.h"
 
-@interface DRAFeedViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface DRAFeedViewController : UITableViewController <NSFetchedResultsControllerDelegate, DRARssFeedDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

@@ -40,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		20113D6019EE6F2300C14AEA /* DRARssFeedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRARssFeedDelegate.h; sourceTree = "<group>"; };
 		207DD63919EE6596008B5AB9 /* DemoRSSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoRSSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		207DD63C19EE6596008B5AB9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		207DD63E19EE6596008B5AB9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -186,6 +187,7 @@
 			children = (
 				207DD67C19EE68A4008B5AB9 /* DRARssFeed.h */,
 				207DD67D19EE68A4008B5AB9 /* DRARssFeed.m */,
+				20113D6019EE6F2300C14AEA /* DRARssFeedDelegate.h */,
 				207DD67F19EE68F2008B5AB9 /* DRARssItem.h */,
 				207DD68019EE68F2008B5AB9 /* DRARssItem.m */,
 			);

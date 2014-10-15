@@ -9,6 +9,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DRARssFeedDelegate.h"
+
 
 @interface DRARssFeed : NSObject
 
@@ -19,5 +21,8 @@
 
 /** URL of the feed. */
 @property(readonly, nonatomic) NSURL *feedUrl;
+
+/** The feed delegate. */
+@property(retain, nonatomic) id<DRARssFeedDelegate> delegate;
 
 @end
