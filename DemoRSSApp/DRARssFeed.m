@@ -175,8 +175,10 @@ static NSDateFormatter *kItemDateFormatter;
     } else if ([elementName isEqualToString:@"item"]) {
         NSAssert(currentItem, @"Not in an item");
 
-        // add item to list of new items
-        [newItems addObject:currentItem];
+        if (![items containsObject:currentItem]) {
+            // add item to list of new items
+            [newItems addObject:currentItem];
+        }
         currentItem = nil;
     } else if (currentItem && (attributeKey = [kItemAttributes objectForKey:elementName])) {
         // end the current attribute
