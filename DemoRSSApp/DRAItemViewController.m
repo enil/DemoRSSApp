@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Emil Nilsson. All rights reserved.
 //
 
-#import "DRADetailViewController.h"
+#import "DRAItemViewController.h"
 
-@interface DRADetailViewController ()
+@interface DRAItemViewController ()
 - (void)configureView;
 @end
 
-@implementation DRADetailViewController
+@implementation DRAItemViewController
 
 #pragma mark - Managing the detail item
 

@@ -10,7 +10,7 @@
 
 #import <CoreData/CoreData.h>
 
-@interface DRAMasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface DRAFeedViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;

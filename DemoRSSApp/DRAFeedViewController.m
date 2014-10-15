@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Emil Nilsson. All rights reserved.
 //
 
-#import "DRAMasterViewController.h"
+#import "DRAFeedViewController.h"
 
-#import "DRADetailViewController.h"
+#import "DRAItemViewController.h"
 
-@interface DRAMasterViewController ()
+@interface DRAFeedViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation DRAMasterViewController
+@implementation DRAFeedViewController
 
 - (void)awakeFromNib
 {

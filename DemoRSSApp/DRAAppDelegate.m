@@ -8,7 +8,7 @@
 
 #import "DRAAppDelegate.h"
 
-#import "DRAMasterViewController.h"
+#import "DRAFeedViewController.h"
 
 @implementation DRAAppDelegate
 
@@ -20,7 +20,7 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    DRAMasterViewController *controller = (DRAMasterViewController *)navigationController.topViewController;
+    DRAFeedViewController *controller = (DRAFeedViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }

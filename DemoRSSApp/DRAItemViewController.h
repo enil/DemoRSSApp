@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DRADetailViewController : UIViewController
+@interface DRAItemViewController : UIViewController
 
 @property (strong, nonatomic) id detailItem;
 

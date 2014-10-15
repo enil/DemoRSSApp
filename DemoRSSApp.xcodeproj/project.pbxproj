@@ -16,8 +16,8 @@
 		207DD64F19EE6596008B5AB9 /* DRAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD64E19EE6596008B5AB9 /* DRAAppDelegate.m */; };
 		207DD65219EE6596008B5AB9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 207DD65019EE6596008B5AB9 /* Main.storyboard */; };
 		207DD65519EE6596008B5AB9 /* DemoRSSApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 207DD65319EE6596008B5AB9 /* DemoRSSApp.xcdatamodeld */; };
-		207DD65819EE6596008B5AB9 /* DRAMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD65719EE6596008B5AB9 /* DRAMasterViewController.m */; };
-		207DD65B19EE6596008B5AB9 /* DRADetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD65A19EE6596008B5AB9 /* DRADetailViewController.m */; };
+		207DD65819EE6596008B5AB9 /* DRAFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD65719EE6596008B5AB9 /* DRAFeedViewController.m */; };
+		207DD65B19EE6596008B5AB9 /* DRAItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 207DD65A19EE6596008B5AB9 /* DRAItemViewController.m */; };
 		207DD65D19EE6596008B5AB9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 207DD65C19EE6596008B5AB9 /* Images.xcassets */; };
 		207DD66419EE6596008B5AB9 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DD66319EE6596008B5AB9 /* XCTest.framework */; };
 		207DD66519EE6596008B5AB9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 207DD63C19EE6596008B5AB9 /* Foundation.framework */; };
@@ -53,10 +53,10 @@
 		207DD64E19EE6596008B5AB9 /* DRAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRAAppDelegate.m; sourceTree = "<group>"; };
 		207DD65119EE6596008B5AB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		207DD65419EE6596008B5AB9 /* DemoRSSApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DemoRSSApp.xcdatamodel; sourceTree = "<group>"; };
-		207DD65619EE6596008B5AB9 /* DRAMasterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRAMasterViewController.h; sourceTree = "<group>"; };
-		207DD65719EE6596008B5AB9 /* DRAMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRAMasterViewController.m; sourceTree = "<group>"; };
-		207DD65919EE6596008B5AB9 /* DRADetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRADetailViewController.h; sourceTree = "<group>"; };
-		207DD65A19EE6596008B5AB9 /* DRADetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRADetailViewController.m; sourceTree = "<group>"; };
+		207DD65619EE6596008B5AB9 /* DRAFeedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRAFeedViewController.h; sourceTree = "<group>"; };
+		207DD65719EE6596008B5AB9 /* DRAFeedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRAFeedViewController.m; sourceTree = "<group>"; };
+		207DD65919EE6596008B5AB9 /* DRAItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DRAItemViewController.h; sourceTree = "<group>"; };
+		207DD65A19EE6596008B5AB9 /* DRAItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DRAItemViewController.m; sourceTree = "<group>"; };
 		207DD65C19EE6596008B5AB9 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		207DD66219EE6596008B5AB9 /* DemoRSSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoRSSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		207DD66319EE6596008B5AB9 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -173,10 +173,10 @@
 		207DD67A19EE6770008B5AB9 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
-				207DD65619EE6596008B5AB9 /* DRAMasterViewController.h */,
-				207DD65719EE6596008B5AB9 /* DRAMasterViewController.m */,
-				207DD65919EE6596008B5AB9 /* DRADetailViewController.h */,
-				207DD65A19EE6596008B5AB9 /* DRADetailViewController.m */,
+				207DD65619EE6596008B5AB9 /* DRAFeedViewController.h */,
+				207DD65719EE6596008B5AB9 /* DRAFeedViewController.m */,
+				207DD65919EE6596008B5AB9 /* DRAItemViewController.h */,
+				207DD65A19EE6596008B5AB9 /* DRAItemViewController.m */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -291,11 +291,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				207DD64F19EE6596008B5AB9 /* DRAAppDelegate.m in Sources */,
-				207DD65B19EE6596008B5AB9 /* DRADetailViewController.m in Sources */,
+				207DD65B19EE6596008B5AB9 /* DRAItemViewController.m in Sources */,
 				207DD68119EE68F2008B5AB9 /* DRARssItem.m in Sources */,
 				207DD67E19EE68A4008B5AB9 /* DRARssFeed.m in Sources */,
 				207DD64B19EE6596008B5AB9 /* main.m in Sources */,
-				207DD65819EE6596008B5AB9 /* DRAMasterViewController.m in Sources */,
+				207DD65819EE6596008B5AB9 /* DRAFeedViewController.m in Sources */,
 				207DD65519EE6596008B5AB9 /* DemoRSSApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +501,7 @@
 				207DD67619EE6596008B5AB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		207DD67719EE6596008B5AB9 /* Build configuration list for PBXNativeTarget "DemoRSSAppTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +510,7 @@
 				207DD67919EE6596008B5AB9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
