@@ -31,9 +31,15 @@
     // Update the user interface for the detail item.
 
     if (self.item) {
-        self.navigationItem.title = self.item.title;
-        self.detailDescriptionLabel.text = self.item.description;
+        self.titleLabel.text = self.item.title;
+        self.descriptionTextView.text = self.item.description;
     }
+}
+
+- (IBAction)openLink:(id)sender
+{
+    // TODO: open in browser in app
+    [[UIApplication sharedApplication] openURL:self.item.link];
 }
 
 - (void)viewDidLoad

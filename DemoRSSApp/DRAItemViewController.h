@@ -11,7 +11,13 @@
 
 @interface DRAItemViewController : UIViewController
 
-@property (strong, nonatomic) DRARssItem *item;
+/**
+ * Opens the link in a browser.
+ */
+- (IBAction)openLink:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
+@property (strong, nonatomic) DRARssItem *item;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
+
 @end
